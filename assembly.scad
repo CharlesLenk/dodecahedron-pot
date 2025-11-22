@@ -33,3 +33,6 @@ module assembly(size, with_pot = true, with_insert = true, cross_section = false
             cube([height, height, height]);
     }
 }
+
+
+//cylinder(d = 80, h = 90);

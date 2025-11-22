@@ -24,7 +24,7 @@ module pot(size) {
 module insert(size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
-    insert_wall_offset = 0.2;
+    insert_wall_offset = 0.15;
     insert_bottom_offset = wall_width + insert_wall_offset + 3;
     difference() {
         union() {
@@ -50,7 +50,7 @@ module insert(size) {
 
 module drain_cuts(size) {
     cut_size = 4;
-    drain_count = 10;
+    drain_count = 6;
     for (i = [0 : drain_count - 1])
         rotate([0, -90, i * (360 / drain_count)])
             translate([0, -cut_size/2])
