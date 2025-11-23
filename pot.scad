@@ -24,7 +24,7 @@ module pot(size) {
 module insert(size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
-    insert_wall_offset = 0.2;
+    insert_wall_offset = 0.15;
     insert_bottom_offset = wall_width + insert_wall_offset + 3;
     difference() {
         union() {
@@ -33,7 +33,7 @@ module insert(size) {
                 core_cut(size);
         }
         fix_preview()
-            offset_cut(insert_bottom_offset + wall_width, slice_height - 0.001, wall_width + insert_wall_offset)
+            offset_cut(insert_bottom_offset + wall_width, slice_height, wall_width + insert_wall_offset)
                 core_cut(size);
         translate([0, 0, wall_width + insert_bottom_offset])
             drain_cuts(size);
@@ -49,8 +49,8 @@ module insert(size) {
 }
 
 module drain_cuts(size) {
-    cut_size = 4;
-    drain_count = 10;
+    cut_size = 5;
+    drain_count = floor((0.4 * size * PI) / (10 + cut_size));
     for (i = [0 : drain_count - 1])
         rotate([0, -90, i * (360 / drain_count)])
             translate([0, -cut_size/2])
@@ -60,7 +60,7 @@ module drain_cuts(size) {
 module core_cut(size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
-    top_lip_width = 4;
+    top_lip_width = 3.5;
     face_angle = 26.565;
     edge_len = height / 2.227;
     rad = edge_len / (2 * tan(36));
