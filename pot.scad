@@ -50,7 +50,7 @@ module insert(size) {
 
 module drain_cuts(size) {
     cut_size = 4;
-    drain_count = 6;
+    drain_count = 10;
     for (i = [0 : drain_count - 1])
         rotate([0, -90, i * (360 / drain_count)])
             translate([0, -cut_size/2])
@@ -60,7 +60,7 @@ module drain_cuts(size) {
 module core_cut(size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
-    top_lip_width = 4;
+    top_lip_width = 3;
     face_angle = 26.565;
     edge_len = height / 2.227;
     rad = edge_len / (2 * tan(36));
