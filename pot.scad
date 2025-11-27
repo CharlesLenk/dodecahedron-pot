@@ -4,6 +4,7 @@ include <defaults.scad>
 size = default_size;
 edge_diameter = 4;
 wall_width = 1.6;
+bottom_width = 2;
 
 function calc_height(size) = size/2 * golden_ratio;
 function calc_slice_height(size) = 0.85 * calc_height(size);
@@ -33,9 +34,9 @@ module insert(size) {
                 core_cut(size);
         }
         fix_preview()
-            offset_cut(insert_bottom_offset + wall_width, slice_height, wall_width + insert_wall_offset)
+            offset_cut(insert_bottom_offset + bottom_width, slice_height, wall_width + insert_wall_offset)
                 core_cut(size);
-        translate([0, 0, wall_width + insert_bottom_offset])
+        translate([0, 0, bottom_width + insert_bottom_offset])
             drain_cuts(size);
     }
 
@@ -50,7 +51,7 @@ module insert(size) {
 
 module drain_cuts(size) {
     cut_size = 5;
-    drain_count = floor((0.4 * size * PI) / (10 + cut_size));
+    drain_count = floor((0.3 * size * PI) / (10 + cut_size));
     for (i = [0 : drain_count - 1])
         rotate([0, -90, i * (360 / drain_count)])
             translate([0, -cut_size/2])
@@ -72,7 +73,7 @@ module core_cut(size) {
             linear_extrude(0.001)
                 fillet_2d(edge_diameter)
                     pentagon_by_inscribed_radius(radius_at_cut_height);
-        translate([0, 0, wall_width])
+        translate([0, 0, bottom_width])
             linear_extrude(0.001)
                 circle(lower_radius);
     }
