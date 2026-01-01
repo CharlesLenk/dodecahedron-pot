@@ -1,14 +1,16 @@
 include <openscad-utilities/common.scad>
-include <defaults.scad>
 
-size = default_size;
+// Diameter of the circumsphere.
+default_size = 130;
 edge_diameter = 4;
 wall_width = 1.6;
+bottom_width = 2;
 
+function get_size() = default_size;
 function calc_height(size) = size/2 * golden_ratio;
 function calc_slice_height(size) = 0.85 * calc_height(size);
 
-module pot(size) {
+module pot(size = default_size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
     insert_top_offset = 0.1;
@@ -21,7 +23,7 @@ module pot(size) {
    }
 }
 
-module insert(size) {
+module insert(size = default_size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
     insert_wall_offset = 0.15;
@@ -33,9 +35,9 @@ module insert(size) {
                 core_cut(size);
         }
         fix_preview()
-            offset_cut(insert_bottom_offset + wall_width, slice_height, wall_width + insert_wall_offset)
+            offset_cut(insert_bottom_offset + bottom_width, slice_height, wall_width + insert_wall_offset)
                 core_cut(size);
-        translate([0, 0, wall_width + insert_bottom_offset])
+        translate([0, 0, bottom_width + insert_bottom_offset])
             drain_cuts(size);
     }
 
@@ -50,36 +52,38 @@ module insert(size) {
 
 module drain_cuts(size) {
     cut_size = 5;
-    drain_count = floor((0.4 * size * PI) / (10 + cut_size));
+    drain_count = floor((0.3 * size * PI) / (10 + cut_size));
     for (i = [0 : drain_count - 1])
         rotate([0, -90, i * (360 / drain_count)])
             translate([0, -cut_size/2])
                 tombstone([cut_size, cut_size, size/2]);
 }
 
+function get_radius_inscribed_in_face(size) =
+    let (
+        height = calc_height(size),
+        edge_len = height / 2.227,
+        radius = edge_len / (2 * tan(36))
+    ) radius;
+
 module core_cut(size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
-    top_lip_width = 3.5;
+    top_lip_width = 2;
     face_angle = 26.565;
-    edge_len = height / 2.227;
-    rad = edge_len / (2 * tan(36));
-    radius_at_cut_height = rad + get_opposite_toa(face_angle, height - slice_height) - (top_lip_width - wall_width);
+    rad = get_radius_inscribed_in_face(size);
+
+    radius_at_cut_height = rad + get_opposite(face_angle, adjacent = height - slice_height) - top_lip_width;
     lower_radius = radius_at_cut_height * cos(36);
 
     hull() {
         translate([0, 0, slice_height])
             linear_extrude(0.001)
-                fillet_2d(edge_diameter)
-                    pentagon_by_inscribed_radius(radius_at_cut_height);
-        translate([0, 0, wall_width])
+                fillet_2d(edge_diameter/2)
+                    circle(r = radius_at_cut_height / cos(36), $fn = 5);
+        translate([0, 0, bottom_width])
             linear_extrude(0.001)
                 circle(lower_radius);
-    }
-
-    module pentagon_by_inscribed_radius(rad) {
-        circumscribed_radius = rad / cos(36);
-        circle(r = circumscribed_radius, $fn = 5);
     }
 }
 
