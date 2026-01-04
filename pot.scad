@@ -69,7 +69,7 @@ function get_radius_inscribed_in_face(size) =
 module core_cut(size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
-    top_lip_width = 2;
+    top_lip_width = 3;
     face_angle = 26.565;
     rad = get_radius_inscribed_in_face(size);
 
