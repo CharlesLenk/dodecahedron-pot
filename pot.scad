@@ -2,7 +2,7 @@ include <openscad-utilities/common.scad>
 
 // Diameter of the circumsphere.
 default_size = 130;
-edge_diameter = 4;
+edge_diameter = 10;
 wall_width = 1.6;
 bottom_width = 2;
 
@@ -69,7 +69,7 @@ function get_radius_inscribed_in_face(size) =
 module core_cut(size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
-    top_lip_width = 2;
+    top_lip_width = 4;
     face_angle = 26.565;
     rad = get_radius_inscribed_in_face(size);
 
