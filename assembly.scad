@@ -1,7 +1,7 @@
 include <openscad-utilities/common.scad>
 use <pot.scad>
 
-size = default_size();
+size = get_default_size();
 
 translate([0, -size])
     assembly(size, cross_section = true);
