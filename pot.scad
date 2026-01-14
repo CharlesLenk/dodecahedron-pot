@@ -2,11 +2,11 @@ include <openscad-utilities/common.scad>
 
 // Diameter of the circumsphere.
 default_size = 130;
-edge_diameter = 10;
+edge_diameter = 8;
 wall_width = 1.6;
 bottom_width = 2;
 
-function get_size() = default_size;
+function get_default_size() = default_size;
 function calc_height(size) = size/2 * golden_ratio;
 function calc_slice_height(size) = 0.85 * calc_height(size);
 
