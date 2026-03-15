@@ -1,12 +1,11 @@
 # Dodecahedron Pot
 
-Project description
+A plant pot in the shape of a dodecahedron. Has an insert with drainage holes that can be removed to help prevent over watering.
 
-Printed images
-
+![](images/with_plant.jpg)
 |||
 |-|-|
-|![](images/image.jpg)|![](images/image.jpg)|
+|![](images/printed.jpg)|![](images/pot_and_insert.jpg)|
 
 # Printing
 
@@ -22,7 +21,8 @@ Painting the seam along the edge of the dodecahedron will help reduce its visibi
 
 |Image|Name|File|Description|
 |-|-|-|-|
-|![](images/image.jpg)|`example_model`|`example.scad`|An example for this table.|
+|![](images/image.jpg)|`pot`|`pot.scad`|The dodecahedron pot.|
+|![](images/image.jpg)|`insert`|`pot.scad`|An insert for the pot.|
 
 # Assembly
 
