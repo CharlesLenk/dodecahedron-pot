@@ -1,34 +1,32 @@
 # Dodecahedron Pot
 
-A plant pot in the shape of a dodecahedron. Has an insert with drainage holes that can be removed to help prevent over watering.
+A plant pot in the shape of a dodecahedron. Has an optional insert with drainage holes that can be removed to help prevent over watering.
 
 ![](images/with_plant.jpg)
 |||
 |-|-|
 |![](images/printed.jpg)|![](images/pot_and_insert.jpg)|
 
-# Printing
+## Printing
 
-PLA filament is recommended because it's low cost and handles overhangs well.
-
-This model is designed to be printed on a standard consumer grade FDM printer with a 0.4mm nozzle and 0.2mm or lower layer height. This model can be printed with 5% infill, which helps prevent warping and lowers print time.
+This model is designed to be printed on a standard consumer grade FDM printer with a 0.4mm nozzle and 0.2mm or lower layer height. PLA filament is recommended because it's low cost and handles overhangs well. Printing the pot with 5% infill, which helps prevent warping and lowers print time.
 
 Painting the seam along the edge of the dodecahedron will help reduce its visibility when compared to running the seam across a face.
 
 ![](images/seam_painting.png)
 
-# Models in this Project
+## Dimensions
+
+The "size" option controls the approximate diameter of the pot. The default size is 135mm (5.3").
+
+## Models in this Project
 
 |Image|Name|File|Description|
 |-|-|-|-|
-|![](images/image.jpg)|`pot`|`pot.scad`|The dodecahedron pot.|
-|![](images/image.jpg)|`insert`|`pot.scad`|An insert for the pot.|
+|![](images/pot_model.png)|`pot`|`pot.scad`|The dodecahedron pot.|
+|![](images/insert_model.png)|`insert`|`pot.scad`|An insert for the pot.|
 
-# Assembly
-
-# Dimensions
-
-# Project Setup
+# Project Setup for Local Editing
 
 Everything below this point is only relevant if you want to download this project and make edits.
 
