@@ -1,7 +1,7 @@
 include <openscad-utilities/common.scad>
 
 // Diameter of the circumsphere.
-default_size = 130;
+default_size = 135;
 edge_diameter = 8;
 wall_width = 1.6;
 bottom_width = 2;
