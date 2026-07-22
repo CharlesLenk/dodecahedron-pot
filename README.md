@@ -55,7 +55,7 @@ There are two options for exporting the models:
 As of 2024, the OpenSCAD development preview uses a new rendering engine called Manifold. Using the development preview
 with Manifold will render the models many times faster, regardless of how you export this project.
 
-### 1. Exporting using the Script
+### 1. Exporting with the Script
 
 The `export.py` script depends on SCAD Export. To set up SCAD Export and run the script, follow the
 [SCAD Export quick start guide](https://github.com/CharlesLenk/scad-export/wiki/1.-Usage#quick-start).
