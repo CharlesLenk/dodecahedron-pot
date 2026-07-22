@@ -1,17 +1,21 @@
 # Dodecahedron Pot
 
-A plant pot in the shape of a dodecahedron with rounded edges. Has an optional insert with drainage holes that can be removed to help prevent over watering and water trapped inside the print.
+A plant pot in the shape of a dodecahedron. Has an optional insert with drainage holes that can be removed to help
+prevent over watering.
 
 ![](images/with_plant.jpg)
 |||
 |-|-|
 |![](images/printed.jpg)|![](images/pot_and_insert.jpg)|
 
+
 ## Printing
 
-This model is designed to be printed on a standard consumer grade FDM printer with a 0.4mm nozzle and 0.2mm or lower layer height. PLA filament is recommended because it's low cost and handles overhangs well. Printing the pot with 5% infill, which helps prevent warping and lowers print time.
+This model is designed to be printed on a standard consumer grade FDM printer using any standard filament such as PLA.
+Printing the pot with 5% infill, which helps prevent warping and lowers print time.
 
-Painting the seam along the edge of the dodecahedron will help reduce its visibility when compared to running the seam across a face.
+Painting the seam along the edge of the dodecahedron will help reduce its visibility when compared to running the seam
+across a face.
 
 ![](images/seam_painting.png)
 
@@ -32,7 +36,8 @@ Everything below this point is only relevant if you want to download this projec
 
 ## Cloning this Repository
 
-This project uses a submodule for common SCAD code. If the submodule is not initialized, the `openscad-utilities` directory will be empty, and the project won't render.
+This project uses a submodule for common SCAD code. If the submodule is not initialized, the `openscad-utilities`
+directory will be empty, and the project won't render.
 
 To get the submodule code when cloning, add the `--recurse-submodules` option to the clone command. For example:
 > `git clone [Project URL] --recurse-submodules`
@@ -44,15 +49,19 @@ If you've already cloned the project, run this command in the project root to pu
 
 There are two options for exporting the models:
 
-1. Manually through the [OpenSCAD](https://openscad.org/) UI.
-2. Through the provided export script.
+1. Through the provided [SCAD Export](https://github.com/CharlesLenk/scad_export) script.
+2. Manually through the [OpenSCAD](https://openscad.org/) UI.
 
-As of 2024, the OpenSCAD development preview uses a new rendering engine called Manifold. Using the development preview with Manifold will render the models many times faster, regardless of how you export this project.
+As of 2024, the OpenSCAD development preview uses a new rendering engine called Manifold. Using the development preview
+with Manifold will render the models many times faster, regardless of how you export this project.
 
-### 1. Exporting Manually
+### 1. Exporting with the Script
 
-The `export map.scad` file contains an `if/else` condition where the call to generate each part can be seen. You can either write OpenSCAD code using these calls to build up a print plate, or the part "name" can be manually edited to select each part, which can then be rendered and exported through the OpenSCAD UI like any other project.
+The `export.py` script depends on SCAD Export. To set up SCAD Export and run the script, follow the
+[SCAD Export quick start guide](https://github.com/CharlesLenk/scad-export/wiki/1.-Usage#quick-start).
 
-### 2. Exporting using the Script
+### 2. Exporting Manually
 
-The export script, `export.py`, depends on the [SCAD Export](https://github.com/CharlesLenk/scad_export) library. To use this script follow the instructions in the SCAD Export documentation.
+The `export map.scad` file contains an `if/else` condition where the call to generate each model can be seen. You can
+either write OpenSCAD code using these calls to build up a print plate, or the model "name" can be manually edited to
+select each model, which can then be rendered and exported through the OpenSCAD UI like any other project.
