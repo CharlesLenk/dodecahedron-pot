@@ -3,16 +3,17 @@ use <pot.scad>
 
 size = get_default_size();
 
-translate([0, -size])
+translate([0, -size, -get_bottom_offset()])
     assembly(size, cross_section = true);
 
-assembly(
-    size,
-    with_insert = false,
-    cross_section = true
-);
+translate([0, 0, -get_bottom_offset()])
+    assembly(
+        size,
+        with_insert = false,
+        cross_section = true
+    );
 
-translate([0, size])
+translate([0, size, -get_bottom_offset()])
     assembly(
         size,
         with_pot = false,
