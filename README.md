@@ -1,13 +1,12 @@
 # Dodecahedron Pot
 
 A plant pot in the shape of a dodecahedron. Has an optional insert with drainage holes that can be removed to help
-prevent over watering.
+drain excess water and prevent overwatering.
 
 ![](images/with_plant.jpg)
 |||
 |-|-|
 |![](images/printed.jpg)|![](images/pot_and_insert.jpg)|
-
 
 ## Printing
 

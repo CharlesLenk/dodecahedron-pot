@@ -5,22 +5,27 @@ default_size = 135;
 edge_diameter = 8;
 wall_width = 1.6;
 bottom_width = 2;
+bottom_offset = edge_diameter/4;
 
 function get_default_size() = default_size;
 function calc_height(size) = size/2 * golden_ratio;
 function calc_slice_height(size) = 0.85 * calc_height(size);
+function get_bottom_offset() = bottom_offset;
 
 module pot(size = default_size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
     insert_top_offset = 0.1;
+
     difference() {
-        dodecahedron_base(height);
-        translate([-height/2, -height/2, slice_height - wall_width - insert_top_offset]) {
-            cube([height, height, height]);
+        intersection() {
+            dodecahedron_base(height);
+            translate([-default_size/2, -default_size/2, bottom_offset]) {
+                cube([default_size, default_size, slice_height - wall_width - insert_top_offset - bottom_offset]);
+            }
         }
         core_cut(size);
-   }
+    }
 }
 
 module insert(size = default_size) {
@@ -31,13 +36,15 @@ module insert(size = default_size) {
     difference() {
         union() {
             lip_slice();
-            offset_cut(insert_bottom_offset, slice_height, insert_wall_offset)
+            // offset_cut(insert_bottom_offset + bottom_offset, slice_height, insert_wall_offset)
+            //     core_cut(size);
+            offset_cut(insert_bottom_offset + bottom_offset, slice_height, insert_wall_offset)
                 core_cut(size);
         }
         fix_preview()
-            offset_cut(insert_bottom_offset + bottom_width, slice_height, wall_width + insert_wall_offset)
+            offset_cut(insert_bottom_offset + bottom_width + bottom_offset, slice_height, wall_width + insert_wall_offset)
                 core_cut(size);
-        translate([0, 0, bottom_width + insert_bottom_offset])
+        translate([0, 0, bottom_width + insert_bottom_offset + bottom_offset])
             drain_cuts(size);
     }
 
@@ -69,7 +76,7 @@ function get_radius_inscribed_in_face(size) =
 module core_cut(size) {
     height = calc_height(size);
     slice_height = calc_slice_height(size);
-    top_lip_width = 4;
+    top_lip_width = 2;
     face_angle = 26.565;
     rad = get_radius_inscribed_in_face(size);
 
@@ -81,7 +88,7 @@ module core_cut(size) {
             linear_extrude(0.001)
                 fillet_2d(edge_diameter/2)
                     circle(r = radius_at_cut_height / cos(36), $fn = 5);
-        translate([0, 0, bottom_width])
+        translate([0, 0, bottom_width + bottom_offset])
             linear_extrude(0.001)
                 circle(lower_radius);
     }
